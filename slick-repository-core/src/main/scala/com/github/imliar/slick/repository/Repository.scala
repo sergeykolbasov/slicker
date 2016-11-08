@@ -71,6 +71,12 @@ trait Repository[Id, E <: Entity[Id]] {
   def remove(es: Seq[E]): WriteAction[Boolean]
 
   /**
+    * Remove all entities in table
+    * @return True in case if at least one of entities was removed
+    */
+  def removeAll(): WriteAction[Boolean]
+
+  /**
     * Count all rows in table
     *
     * @return Number of rows

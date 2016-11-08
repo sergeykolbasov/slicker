@@ -9,7 +9,7 @@ import slick.lifted.CanBeQueryCondition
 import scala.concurrent.ExecutionContext
 import scala.language.higherKinds
 
-abstract class PostgreSQLRepository[Id: BaseTypedType, E <: Entity[Id], R, T <: TableWithId[Id, R]](protected val table: RecordTable[Id, E, R, T])
+abstract class PostgreSQLRepository[Id : BaseTypedType, E <: Entity[Id], R, T <: TableWithId[Id, R]](protected val table: RecordTable[Id, E, R, T])
   extends Repository[Id, E] {
 
   protected implicit val ec: ExecutionContext
@@ -100,6 +100,14 @@ abstract class PostgreSQLRepository[Id: BaseTypedType, E <: Entity[Id], R, T <: 
     */
   def remove(es: Seq[E]): WriteAction[Boolean] = {
     DBIOAction.sequence(es.map(remove)).map(_ => true)
+  }
+
+  /**
+    * Remove all entities in table
+    * @return True in case if at least one of entities was removed
+    */
+  def removeAll(): WriteAction[Boolean] = {
+    tableQuery.delete.map(_ > 0)
   }
 
   /**
