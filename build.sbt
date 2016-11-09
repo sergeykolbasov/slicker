@@ -6,7 +6,7 @@ val commonSettings = Seq(
 
 val publishSettings = Seq(
   licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0")),
-  publishMavenStyle := false,
+  publishMavenStyle := true,
   publishArtifact in Test := false,
   bintrayRepository := "slick-repository",
   bintrayPackageLabels := Seq("slick", "repository")
