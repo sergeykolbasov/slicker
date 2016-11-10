@@ -6,7 +6,9 @@ val commonSettings = Seq(
 
 val publishSettings = Seq(
   licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0")),
-  publishMavenStyle := false,
+  organization := "slick-repository",
+  publishArtifact := true,
+  publishMavenStyle := true,
   publishArtifact in Test := false,
   bintrayRepository := "slick-repository",
   bintrayPackageLabels := Seq("slick", "repository")
@@ -38,4 +40,3 @@ lazy val `slick-repository-postgres` = project.
   settings(publishSettings).
   settings(libraryDependencies ++= Seq(postgresql) ++ Seq(slickHikari, scalaTest) ++ logging).
   dependsOn(`slick-repository-core`)
-
