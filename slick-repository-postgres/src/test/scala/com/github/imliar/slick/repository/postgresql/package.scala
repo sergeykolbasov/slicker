@@ -14,4 +14,6 @@ package object postgresql {
 
   }
 
+  def closeConnection(): Unit = db.close()
+
 }

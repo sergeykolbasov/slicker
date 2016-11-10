@@ -6,6 +6,10 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+
+    <logger name="slick" level="INFO" />
+    <logger name="com.zaxxer.hikari" level="INFO" />
+
     <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>
