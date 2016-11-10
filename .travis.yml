@@ -9,6 +9,9 @@ scala:
 services:
   - postgresql
 
+addons:
+  postgresql: "9.4"
+
 before_script:
   - psql -c "create database test;" -U postgres
   - psql -c "create user test with password 'test'; grant all privileges on database test to test;" -U postgres
