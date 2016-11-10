@@ -9,12 +9,14 @@ import slick.lifted.CanBeQueryCondition
 import scala.concurrent.ExecutionContext
 import scala.language.higherKinds
 
-abstract class PostgreSQLRepository[Id : BaseTypedType, E <: Entity[Id], R, T <: TableWithId[Id, R]](protected val table: RecordTable[Id, E, R, T])
+abstract class PostgreSQLRepository[Id : BaseTypedType, E, R, T <: TableWithId[Id, R]](protected val table: RecordTable[Id, E, R, T])(implicit entity: Entity[E, Id])
   extends Repository[Id, E] {
 
   protected implicit val ec: ExecutionContext
 
   protected val tableQuery = table.tableQuery
+
+  protected def id(e: E): Option[Id] = implicitly[Entity[E, Id]].id(e)
 
   /**
     * Insert or updates entity in DB
@@ -23,7 +25,7 @@ abstract class PostgreSQLRepository[Id : BaseTypedType, E <: Entity[Id], R, T <:
     * @return inserted entity with new ID or updated entity
     */
   def save(e: E): WriteAction[E] = {
-    e.id match {
+    id(e) match {
       case Some(id) =>
         tableQuery
           .filter(_.id === id)
@@ -89,7 +91,7 @@ abstract class PostgreSQLRepository[Id : BaseTypedType, E <: Entity[Id], R, T <:
     * @return True in case if entity was removed
     */
   def remove(e: E): WriteAction[Boolean] = {
-    removeById(e.id.getOrElse(throw new IllegalStateException("Entity is required to have an id for removal")))
+    removeById(id(e).getOrElse(throw new IllegalStateException("Entity is required to have an id for removal")))
   }
 
   /**

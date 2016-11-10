@@ -16,6 +16,8 @@ val publishSettings = Seq(
 
 val slick = "com.typesafe.slick" %% "slick" % "3.1.1"
 
+val shapeless = "com.chuusai" %% "shapeless" % "2.3.2"
+
 val postgresql = "org.postgresql" % "postgresql" % "9.4.1211"
 
 val slickHikari = "com.typesafe.slick" % "slick-hikaricp_2.11" % "3.1.1" % "test"
@@ -32,7 +34,7 @@ lazy val `slick-repository-core` = project.
   settings(commonSettings).
   settings(publishSettings).
   settings(Seq(
-    libraryDependencies ++= Seq(slick))
+    libraryDependencies ++= Seq(slick, shapeless))
   )
 
 lazy val `slick-repository-postgres` = project.

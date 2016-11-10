@@ -1,16 +1,20 @@
 package com.github.imliar.slick.repository.postgresql
 
 import com.github.imliar.slick.repository.postgresql.models.{User, UserTable, UsersRepository}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
+import org.scalatest.{BeforeAndAfterAll, BeforeAndAfter, FlatSpec, Matchers}
 import slick.driver.PostgresDriver.api._
 
 import scala.concurrent.duration._
 
-class PostgreSQLRepositorySpec extends FlatSpec with Matchers with AwaitHelper with BeforeAndAfter {
+class PostgreSQLRepositorySpec extends FlatSpec with Matchers with AwaitHelper with BeforeAndAfter with BeforeAndAfterAll {
 
   private val userTable = new UserTable
   private val userRepo = new UsersRepository
   private implicit val timeout = 10.seconds
+
+  override def afterAll(): Unit = {
+    closeConnection()
+  }
 
   before {
     userTable.tableQuery.schema.create.run.await

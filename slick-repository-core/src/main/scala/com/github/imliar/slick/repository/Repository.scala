@@ -8,7 +8,7 @@ import slick.dbio._
   * @tparam Id Type of ID parameter
   * @tparam E  Type of entity class
   */
-trait Repository[Id, E <: Entity[Id]] {
+trait Repository[Id, E] {
 
   type WriteAction[A] = DBIOAction[A, NoStream, Effect.Write]
 
