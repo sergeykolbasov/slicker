@@ -42,3 +42,8 @@ lazy val `slick-repository-postgres` = project.
   settings(publishSettings).
   settings(libraryDependencies ++= Seq(postgresql) ++ Seq(slickHikari, scalaTest) ++ logging).
   dependsOn(`slick-repository-core`)
+
+lazy val `slick-repository-monad` = project.
+  settings(commonSettings).
+  settings(publishSettings).
+  settings(libraryDependencies ++= Seq(slick, scalaTest) ++ logging)
