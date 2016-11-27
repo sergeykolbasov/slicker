@@ -3,7 +3,7 @@ package com.github.imliar.slick.repository.postgresql
 import com.github.imliar.slick.repository.{Entity, PageRequest, Repository}
 import slick.ast.BaseTypedType
 import slick.dbio.DBIOAction
-import slick.driver.PostgresDriver.api._
+import PostgresDriver.api._
 import slick.lifted.CanBeQueryCondition
 
 import scala.concurrent.ExecutionContext

@@ -22,6 +22,11 @@ val postgresql = "org.postgresql" % "postgresql" % "9.4.1211"
 
 val slickHikari = "com.typesafe.slick" % "slick-hikaricp_2.11" % "3.1.1" % "test"
 
+val slickPg = Seq(
+  "com.github.tminglei" %% "slick-pg" % "0.14.3",
+  "com.github.tminglei" %% "slick-pg_date2" % "0.14.3"
+)
+
 val logging = Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.7",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
@@ -40,9 +45,8 @@ lazy val `slick-repository-core` = project.
 lazy val `slick-repository-postgres` = project.
   settings(commonSettings).
   settings(publishSettings).
-  settings(libraryDependencies ++= Seq(postgresql) ++ Seq(slickHikari, scalaTest) ++ logging).
+  settings(libraryDependencies ++= Seq(postgresql) ++ slickPg ++ Seq(slickHikari, scalaTest) ++ logging).
   dependsOn(`slick-repository-core`)
-
 lazy val `slick-repository-monad` = project.
   settings(commonSettings).
   settings(publishSettings).
