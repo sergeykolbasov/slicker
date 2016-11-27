@@ -1,8 +1,8 @@
 package com.github.imliar.slick.repository.postgresql.models
 
 import com.github.imliar.slick.repository.postgresql.{RecordTable, TableWithId}
-import slick.driver.PostgresDriver.api._
 import slick.lifted.ProvenShape
+import com.github.imliar.slick.repository.postgresql.PostgresDriver.api._
 
 class UserTable extends RecordTable[Long, User, User, Users] {
 
@@ -17,6 +17,7 @@ class UserTable extends RecordTable[Long, User, User, Users] {
     * Conversion from database entity to business
     */
   override def toBusiness(database: User): User = database
+
 }
 
 class Users(tag: Tag) extends TableWithId[Long, User](tag, "users") {

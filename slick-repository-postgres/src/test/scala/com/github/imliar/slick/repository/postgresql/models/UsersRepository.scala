@@ -2,7 +2,7 @@ package com.github.imliar.slick.repository.postgresql.models
 
 import com.github.imliar.slick.repository.postgresql.PostgreSQLRepository
 
-import slick.driver.PostgresDriver.api._
+import com.github.imliar.slick.repository.postgresql.PostgresDriver.api._
 
 import scala.concurrent.ExecutionContext
 

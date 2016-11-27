@@ -1,6 +1,6 @@
 package com.github.imliar.slick.repository.postgresql
 
-import slick.driver.PostgresDriver.api._
+import PostgresDriver.api._
 
 /**
   * Basic trait for records entities

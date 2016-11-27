@@ -2,8 +2,7 @@ package com.github.imliar.slick.repository.postgresql
 
 import com.github.imliar.slick.repository.postgresql.models.{User, UserTable, UsersRepository}
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfter, FlatSpec, Matchers}
-import slick.driver.PostgresDriver.api._
-
+import PostgresDriver.api._
 import scala.concurrent.duration._
 
 class PostgreSQLRepositorySpec extends FlatSpec with Matchers with AwaitHelper with BeforeAndAfter with BeforeAndAfterAll {

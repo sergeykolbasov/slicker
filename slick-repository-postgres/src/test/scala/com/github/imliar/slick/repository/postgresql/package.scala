@@ -1,6 +1,6 @@
 package com.github.imliar.slick.repository
 
-import slick.driver.PostgresDriver.api._
+import com.github.imliar.slick.repository.postgresql.PostgresDriver.api._
 
 import scala.concurrent.Future
 
