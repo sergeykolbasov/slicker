@@ -1,16 +1,14 @@
-name := "slick-repository"
-
 val commonSettings = Seq(
   scalaVersion := "2.11.8"
 )
 
 val publishSettings = Seq(
   licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0")),
-  organization := "slick-repository",
+  organization := "slicker",
   publishArtifact := true,
   publishMavenStyle := true,
   publishArtifact in Test := false,
-  bintrayRepository := "slick-repository",
+  bintrayRepository := "slicker",
   bintrayPackageLabels := Seq("slick", "repository")
 )
 
@@ -35,19 +33,19 @@ val logging = Seq(
 val scalaTest = "org.scalatest" % "scalatest_2.11" % "3.0.0" % "test"
 
 
-lazy val `slick-repository-core` = project.
+lazy val `slicker-core` = project.
   settings(commonSettings).
   settings(publishSettings).
   settings(Seq(
     libraryDependencies ++= Seq(slick, shapeless))
   )
 
-lazy val `slick-repository-postgres` = project.
+lazy val `slicker-postgres` = project.
   settings(commonSettings).
   settings(publishSettings).
   settings(libraryDependencies ++= Seq(postgresql) ++ slickPg ++ Seq(slickHikari, scalaTest) ++ logging).
-  dependsOn(`slick-repository-core`)
-lazy val `slick-repository-monad` = project.
+  dependsOn(`slicker-core`)
+lazy val `slicker-monad` = project.
   settings(commonSettings).
   settings(publishSettings).
   settings(libraryDependencies ++= Seq(slick, scalaTest) ++ logging)
