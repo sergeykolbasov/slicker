@@ -45,6 +45,7 @@ lazy val `slicker-postgres` = project.
   settings(publishSettings).
   settings(libraryDependencies ++= Seq(postgresql) ++ slickPg ++ Seq(slickHikari, scalaTest) ++ logging).
   dependsOn(`slicker-core`)
+
 lazy val `slicker-monad` = project.
   settings(commonSettings).
   settings(publishSettings).
