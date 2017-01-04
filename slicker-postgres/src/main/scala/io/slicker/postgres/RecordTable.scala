@@ -1,6 +1,8 @@
 package io.slicker.postgres
 
+import io.slicker.core.order.Order
 import io.slicker.postgres.PostgresDriver.api._
+
 /**
   * Basic trait for records entities
   *
@@ -25,5 +27,7 @@ trait RecordTable[Id, Business, Database, T <: TableWithId[Id, Database]] {
     * Conversion from database entity to business
     */
   def toBusiness(database: Database): Business
+
+  def order: Order[T] = Order.empty[T]
 
 }

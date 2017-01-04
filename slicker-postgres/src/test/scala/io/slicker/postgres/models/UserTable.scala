@@ -1,12 +1,17 @@
 package io.slicker.postgres.models
 
+import io.slicker.core.order.Order
 import io.slicker.postgres.PostgresDriver.api._
 import io.slicker.postgres.{SimpleRecordTable, TableWithId}
 import slick.lifted.ProvenShape
 
+import scala.language.experimental.macros
+
 class UserTable extends SimpleRecordTable[Long, User, Users] {
 
   override val tableQuery: TableQuery[Users] = TableQuery[Users]
+
+  override def order: Order[Users] = Order.full[Users]
 
 }
 

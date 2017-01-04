@@ -14,7 +14,7 @@ abstract class PostgreSQLRepository[Id : BaseTypedType, E, R, T <: TableWithId[I
 
   protected implicit val ec: ExecutionContext
 
-  protected val tableQuery = table.tableQuery
+  protected val tableQuery: TableQuery[T] = table.tableQuery
 
   protected def id(e: E): Option[Id] = implicitly[Entity[E, Id]].id(e)
 
@@ -177,17 +177,21 @@ abstract class PostgreSQLRepository[Id : BaseTypedType, E, R, T <: TableWithId[I
                                       (implicit canBeQueryCondition: CanBeQueryCondition[P]): ReadAction[Seq[E]] = {
     tableQuery
       .filter(f)
-      .drop(pageRequest.offset)
-      .take(pageRequest.perPage)
+      .withPageRequest(pageRequest)
       .result.map(_.map(table.toBusiness))
   }
 
   /**
     * Helper for using PageRequest along with slick
     */
-  protected implicit class QueryWithPageRequest[+EQ, UQ, CQ[_]](q: Query[EQ, UQ, CQ]) {
-    def withPageRequest(pr: PageRequest): Query[EQ, UQ, CQ] = {
-      q.drop(pr.offset).take(pr.perPage) //@TODO sorting?
+  protected implicit class QueryWithPageRequest[UQ, CQ[_]](q: Query[T, UQ, CQ]) {
+    def withPageRequest(pr: PageRequest): Query[T, UQ, CQ] = {
+      val withOffset = if(pr.perPage == Int.MaxValue) {
+        q
+      } else {
+        q.drop(pr.offset).take(pr.perPage)
+      }
+      withOffset.sortBy(t => table.order(t, pr.sort.fields))
     }
   }
 
