@@ -62,7 +62,45 @@ object Order {
 
   }
 
-  def instance[T](pf: T => PartialFunction[String, Ordered]): Order[T] = {
+  def partialImpl[T : c.WeakTypeTag](c: Context)(f: c.Expr[T => Seq[_]]): c.Expr[Order[T]] = {
+
+    import c.universe._
+
+    val T = weakTypeOf[T]
+    val function = q"$f"
+    val arg = function.children.head.asInstanceOf[ValDef]
+    val argName = arg.name
+    val functionResult = function.children.last.asInstanceOf[Apply]
+    val cases = functionResult.args.collect {
+      case Select(Ident(prefix), method: TermName) if prefix == argName =>
+        val term = q"table.$method"
+        val ordered = q"if(sortDirection.isAsc) Some($term.asc) else Some($term.desc)"
+        val name = method.decodedName.toString
+        cq"$name => $ordered"
+    } ++ Seq(cq"_ => Option.empty[slick.lifted.Ordered]")
+
+    c.Expr[Order[T]] {
+      q"""
+          new io.slicker.core.order.Order[$T] {
+            protected def ordered(table: $T, field: String, sortDirection: io.slicker.core.SortDirection): Option[slick.lifted.Ordered] = {
+              field match {
+                  case ..$cases
+              }
+            }
+          }
+      """
+    }
+  }
+
+  /*def partialImpl[F : c.WeakTypeTag, T : c.WeakTypeTag](c: Context)(f: c.Expr[F]): c.Expr[Order[A]] = {
+    import c.universe._
+
+    val F = weakTypeOf[F]
+    f.tree
+    //F.member(q"apply")
+  }*/
+
+  /*def instance[T](pf: T => PartialFunction[String, Ordered]): Order[T] = {
     new Order[T] {
       override protected def ordered(table: T, field: String, sortDirection: SortDirection): Option[Ordered] = {
         pf(table).lift(field).map { ordered =>
@@ -72,7 +110,8 @@ object Order {
         }
       }
     }
-  }
+  }*/
+  def instance[T](f: T => Seq[_]): Order[T] = macro partialImpl[T]
 
   private def sortDirectionToOrdering(sortDirection: SortDirection): Ordering = {
     sortDirection match {
