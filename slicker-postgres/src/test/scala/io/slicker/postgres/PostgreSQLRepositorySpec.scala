@@ -1,5 +1,6 @@
 package io.slicker.postgres
 
+import io.slicker.core.{Fields, PageRequest, SortDirection}
 import io.slicker.postgres.PostgresDriver.api._
 import io.slicker.postgres.models.{User, UserTable, UsersRepository}
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FlatSpec, Matchers}
@@ -40,6 +41,12 @@ class PostgreSQLRepositorySpec extends FlatSpec with Matchers with AwaitHelper w
   it should "save multiple entities, return IDs and find them by ids" in {
     val users = userRepo.save(Seq(User(None, "name"), User(None, "name2"))).run.await
     users.flatMap(_.id).flatMap(userRepo.findById(_).run.await) shouldBe users
+  }
+
+  it should "save multiple entities and find them in descending order" in {
+    val users = userRepo.save(Seq(User(None, "name"), User(None, "name2"))).run.await
+    val sort = Fields(Seq("name" -> SortDirection.Desc))
+    userRepo.findAll(PageRequest(sort)).run.await shouldBe users.sortBy(_.name).reverse
   }
 
   it should "update saved entity" in {

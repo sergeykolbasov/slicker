@@ -1,6 +1,8 @@
 package io.slicker.postgres
 
+import io.slicker.core.sort.Sort
 import io.slicker.postgres.PostgresDriver.api._
+
 /**
   * Basic trait for records entities
   *
@@ -25,5 +27,11 @@ trait RecordTable[Id, Business, Database, T <: TableWithId[Id, Database]] {
     * Conversion from database entity to business
     */
   def toBusiness(database: Database): Business
+
+  /**
+    * [[Sort]] object that will return [[slick.lifted.Ordered]]
+    * for some input string as field name to sort by
+    */
+  def order: Sort[T] = Sort.empty[T]
 
 }
