@@ -11,7 +11,7 @@ class UserTable extends SimpleRecordTable[Long, User, Users] {
 
   override val tableQuery: TableQuery[Users] = TableQuery[Users]
 
-  override def order: Sort[Users] = Sort.auto[Users]
+  override def sort: Sort[Users] = Sort.auto[Users]
 
 }
 
