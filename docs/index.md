@@ -84,4 +84,4 @@ More
 
 * [Entity ID](entity.md)
 * [Pagination and sorting](pagerequest.md)
-* [Slick-PG Driver](slickpg.md)
+* [Slick-pg Driver](slickpg.md)

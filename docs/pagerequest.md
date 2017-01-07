@@ -109,4 +109,4 @@ More
 
 * [Quick start](index.md)
 * [Entity ID](entity.md)
-* [Slick-PG Driver](slickpg.md)
+* [Slick-pg Driver](slickpg.md)
