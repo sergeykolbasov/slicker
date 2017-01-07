@@ -61,7 +61,7 @@ to use `SimpleRecordTable`.
 `TableWithId` defines `id` column with provided type so `Repository` could operate with entity id.
 
 Now define repository interface as a next step. It's not required but just a good practice
-to split intentions from implementation.
+to split intention and implementation.
 
 ```scala
 import io.slicker.core.Repository
@@ -102,4 +102,3 @@ Limitations
 ------
 
 - Only PostgreSQL implementation available. It'll be easy to support other DBs creating new subproject.
-- Currently there is no out-of-the-box solution for sorting. WIP

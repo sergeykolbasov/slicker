@@ -32,6 +32,6 @@ trait RecordTable[Id, Business, Database, T <: TableWithId[Id, Database]] {
     * [[Sort]] object that will return [[slick.lifted.Ordered]]
     * for some input string as field name to sort by
     */
-  def order: Sort[T] = Sort.empty[T]
+  def sort: Sort[T] = Sort.empty[T]
 
 }

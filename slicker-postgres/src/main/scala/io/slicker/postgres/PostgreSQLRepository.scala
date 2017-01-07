@@ -191,7 +191,7 @@ abstract class PostgreSQLRepository[Id : BaseTypedType, E, R, T <: TableWithId[I
       } else {
         q.drop(pr.offset).take(pr.perPage)
       }
-      withOffset.sortBy(t => table.order(t, pr.sort.fields))
+      withOffset.sortBy(t => table.sort(t, pr.sort))
     }
   }
 

@@ -7,7 +7,7 @@ package io.slicker.core
   * @param perPage Number of entities to get from request. Should always be equal or greater than 0
   * @param sort    Fields to sort by
   */
-case class PageRequest(page: Int, perPage: Int, sort: Fields = Fields.empty) {
+case class PageRequest(page: Int, perPage: Int, sort: Seq[(String, SortDirection)] = Seq.empty) {
 
   /**
     * Offset value for SQL queries
@@ -33,14 +33,8 @@ object PageRequest {
     */
   val FIRSTPAGE = new PageRequest(1, 10)
 
-  def apply(sort: Fields): PageRequest = PageRequest(1, Int.MaxValue, sort)
+  def apply(sort: Seq[(String, SortDirection)]): PageRequest = PageRequest(1, Int.MaxValue, sort)
 
-}
-
-case class Fields(fields: Seq[(String, SortDirection)])
-
-object Fields {
-  def empty: Fields = Fields(Seq.empty)
 }
 
 sealed abstract class SortDirection(val name: String) {
