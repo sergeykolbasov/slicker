@@ -1,4 +1,4 @@
-Entity
+Entity ID
 ======
 
 To provide methods such as `findById`, `save`, `remove` and so on, Slicker
