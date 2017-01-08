@@ -29,7 +29,18 @@ still with possibility of doing manual work.
 Example
 ------
 
-Let's first define table and entity that we're going to use:
+First add following lines to your build.sbt:
+```
+libraryDependencies ++= Seq(
+    "com.github.imliar" %% "slicker-core" % "0.1",
+    "com.github.imliar" %% "slicker-postgres" % "0.1"
+)
+```
+
+Currently only Scala 2.11 release is available because Slick wasn't released 
+for 2.12 yet.
+
+Then define table and entity that we're going to use:
 
 ```scala
 import io.slicker.postgres.PostgresDriver.api._
