@@ -1,4 +1,5 @@
 Slicker [![Build Status](https://travis-ci.org/ImLiar/slicker.svg?branch=master)](https://travis-ci.org/ImLiar/slicker)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.imliar/slicker-core_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.imliar/slicker-core_2.11)
 ======
 Using [Slick](http://slick.lightbend.com/) in repository manner.
 
