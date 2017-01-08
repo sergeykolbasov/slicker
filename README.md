@@ -109,6 +109,11 @@ class UsersRepositoryImpl extends PostgreSQLRepository(new UserTable) with Users
 `findOneBy` is one of methods that come with [PostgreSQLRepository](https://github.com/ImLiar/slicker/blob/master/slicker-postgres/src/main/scala/io/slicker/postgres/PostgreSQLRepository.scala)
 and supposed to provide easy-to-use CRUD operations.
 
+Documentation
+------
+
+Detailed documentation could be found [here](https://github.com/ImLiar/slicker/blob/master/docs/index.md).
+
 Limitations
 ------
 
