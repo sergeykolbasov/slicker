@@ -1,6 +1,9 @@
+lazy val currentScalaVersion = "2.12.1"
+
 val commonSettings = Seq(
-  scalaVersion := "2.11.8",
-  organization := "com.github.imliar"
+  organization := "com.github.imliar",
+  scalaVersion := currentScalaVersion,
+  crossScalaVersions := Seq("2.11.8", "2.12.0", "2.12.1")
 )
 
 lazy val publishSettings = Seq(
@@ -40,19 +43,19 @@ lazy val noPublish = Seq(
   publishArtifact := false
 )
 
-val slick = "com.typesafe.slick" %% "slick" % "3.1.1"
+val slick = "com.typesafe.slick" %% "slick" % "3.2.0-M2"
 
 val shapeless = "com.chuusai" %% "shapeless" % "2.3.2"
 
 val postgresql = "org.postgresql" % "postgresql" % "9.4.1211"
 
-val slickHikari = "com.typesafe.slick" % "slick-hikaricp_2.11" % "3.1.1" % "test"
+val slickHikari = "com.typesafe.slick" % "slick-hikaricp_2.11" % "3.2.0-M@" % "test"
 
-val scalaReflect = "org.scala-lang" % "scala-reflect" % "2.11.8"
+val scalaReflect = "org.scala-lang" % "scala-reflect" % currentScalaVersion
 
 val slickPg = Seq(
-  "com.github.tminglei" %% "slick-pg" % "0.14.3",
-  "com.github.tminglei" %% "slick-pg_date2" % "0.14.3"
+  "com.github.tminglei" %% "slick-pg_core" % "0.15.0-M3",
+  "com.github.tminglei" %% "slick-pg_date2" % "0.15.0-M3"
 )
 
 val logging = Seq(
