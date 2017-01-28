@@ -1,4 +1,5 @@
 lazy val currentScalaVersion = "2.12.1"
+lazy val currentSlickVersion = "3.2.0-M2"
 
 val commonSettings = Seq(
   organization := "com.github.imliar",
@@ -43,27 +44,24 @@ lazy val noPublish = Seq(
   publishArtifact := false
 )
 
-val slick = "com.typesafe.slick" %% "slick" % "3.2.0-M2"
+val slick = "com.typesafe.slick" %% "slick" % currentSlickVersion
 
 val shapeless = "com.chuusai" %% "shapeless" % "2.3.2"
 
 val postgresql = "org.postgresql" % "postgresql" % "9.4.1211"
 
-val slickHikari = "com.typesafe.slick" % "slick-hikaricp_2.11" % "3.2.0-M@" % "test"
+val slickHikari = "com.typesafe.slick" %% "slick-hikaricp" % currentSlickVersion % "test"
 
 val scalaReflect = "org.scala-lang" % "scala-reflect" % currentScalaVersion
 
-val slickPg = Seq(
-  "com.github.tminglei" %% "slick-pg_core" % "0.15.0-M3",
-  "com.github.tminglei" %% "slick-pg_date2" % "0.15.0-M3"
-)
+val slickPg = "com.github.tminglei" %% "slick-pg_core" % "0.15.0-M3"
 
 val logging = Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.7",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
 ).map(_ % "test")
 
-val scalaTest = "org.scalatest" % "scalatest_2.11" % "3.0.0" % "test"
+val scalaTest = "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 
 
 lazy val `slicker-core` = project.
@@ -76,7 +74,7 @@ lazy val `slicker-core` = project.
 lazy val `slicker-postgres` = project.
   settings(commonSettings).
   settings(publishSettings).
-  settings(libraryDependencies ++= Seq(postgresql) ++ slickPg ++ Seq(slickHikari, scalaTest) ++ logging).
+  settings(libraryDependencies ++= Seq(postgresql, slickPg) ++ Seq(slickHikari, scalaTest) ++ logging).
   dependsOn(`slicker-core`)
 
 lazy val `slicker-monad` = project.
