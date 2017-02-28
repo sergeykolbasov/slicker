@@ -2,7 +2,7 @@ package io.slicker.postgres
 
 import com.github.tminglei.slickpg._
 
-class PostgresDriver extends ExPostgresDriver
+class PostgresDriver extends ExPostgresProfile
   with PgArraySupport
   with PgDate2Support
   with PgRangeSupport

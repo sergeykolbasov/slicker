@@ -1,5 +1,5 @@
 lazy val currentScalaVersion = "2.12.1"
-lazy val currentSlickVersion = "3.2.0-M2"
+lazy val currentSlickVersion = "3.2.0"
 
 val commonSettings = Seq(
   organization := "com.github.imliar",
@@ -48,13 +48,13 @@ val slick = "com.typesafe.slick" %% "slick" % currentSlickVersion
 
 val shapeless = "com.chuusai" %% "shapeless" % "2.3.2"
 
-val postgresql = "org.postgresql" % "postgresql" % "9.4.1211"
+val postgresql = "org.postgresql" % "postgresql" % "42.0.0"
 
 val slickHikari = "com.typesafe.slick" %% "slick-hikaricp" % currentSlickVersion % "test"
 
 val scalaReflect = "org.scala-lang" % "scala-reflect" % currentScalaVersion
 
-val slickPg = "com.github.tminglei" %% "slick-pg_core" % "0.15.0-M3"
+val slickPg = "com.github.tminglei" %% "slick-pg" % "0.15.0-M4"
 
 val logging = Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.7",
