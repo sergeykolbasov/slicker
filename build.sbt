@@ -1,9 +1,10 @@
-lazy val currentScalaVersion = "2.11.8"
+lazy val currentScalaVersion = "2.12.1"
 lazy val currentSlickVersion = "3.2.0"
 
 val commonSettings = Seq(
   organization := "com.github.imliar",
-  scalaVersion := currentScalaVersion
+  scalaVersion := currentScalaVersion,
+  crossScalaVersions := Seq("2.11.8", "2.12.1")
 )
 
 lazy val publishSettings = Seq(
