@@ -2,7 +2,7 @@ package io.slicker.postgres
 
 import com.github.tminglei.slickpg._
 
-class PostgresDriver extends ExPostgresProfile
+trait PostgresDriver extends ExPostgresProfile
   with PgArraySupport
   with PgDate2Support
   with PgRangeSupport
@@ -13,9 +13,9 @@ class PostgresDriver extends ExPostgresProfile
   with PgLTreeSupport
   with PgCompositeSupport {
 
-  override val api = SlickAPI
+  override val api = new SlickAPI {}
 
-  object SlickAPI extends API with ArrayImplicits
+  trait SlickAPI extends API with ArrayImplicits
     with DateTimeImplicits
     with NetImplicits
     with LTreeImplicits

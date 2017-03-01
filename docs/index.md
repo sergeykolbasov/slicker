@@ -11,13 +11,10 @@ Quick start
 First add following lines to your build.sbt:
 ```
 libraryDependencies ++= Seq(
-    "com.github.imliar" %% "slicker-core" % "0.1",
-    "com.github.imliar" %% "slicker-postgres" % "0.1"
+    "com.github.imliar" %% "slicker-core" % "0.3",
+    "com.github.imliar" %% "slicker-postgres" % "0.3"
 )
 ```
-
-Currently only Scala 2.11 release is available because Slick wasn't released 
-for 2.12 yet.
 
 Then define table and entity that we're going to use:
 
