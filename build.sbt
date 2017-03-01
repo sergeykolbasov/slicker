@@ -52,7 +52,7 @@ val postgresql = "org.postgresql" % "postgresql" % "42.0.0"
 
 val slickHikari = "com.typesafe.slick" %% "slick-hikaricp" % currentSlickVersion % "test"
 
-val scalaReflect = "org.scala-lang" % "scala-reflect" % currentScalaVersion
+val scalaReflect =  "org.scala-lang" % "scala-reflect"
 
 val slickPg = "com.github.tminglei" %% "slick-pg" % "0.15.0-M4"
 
@@ -68,7 +68,7 @@ lazy val `slicker-core` = project.
   settings(commonSettings).
   settings(publishSettings).
   settings(Seq(
-    libraryDependencies ++= Seq(slick, shapeless, scalaReflect))
+    libraryDependencies ++= Seq(slick, shapeless, scalaReflect % scalaVersion.value))
   )
 
 lazy val `slicker-postgres` = project.
